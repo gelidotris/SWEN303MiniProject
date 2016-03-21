@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8"/>
+	<title> Colenso Project - Mini Project </title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<SCRIPT language="Javascript" src="javascript.js"></SCRIPT>
+
+</head>
+
+<body>
+
+	<div class="container-fluid" onload="createQuestionPanel()">
+		<header>
+			<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" onclick="homepage()">Colenso Project</a>
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li><a onclick="homepage()">Home <span class="sr-only">(current)</span></a></li>
+							<li><a onclick="addDoc()">Add Document</a></li>
+							<li class="dropdown">
+								<a onclick="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore by <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a onclick="exploreDocType()">Document Type</a></li>
+									<li><a onclick="exploreAuthor()">Author</a></li>
+									<li><a onclick="exploreYear()">Year?</a></li>
+								</ul>
+							</li>
+						</ul>
+						<form class="navbar-form navbar-right" role="search">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="Search">
+							</div>
+							<button type="submit" class="btn btn-default">Submit</button>
+						</form>
+					</div>
+				</div>
+			</nav>		
+		</header>
+
+
+		<div class="container text-center">    
+			<div class="row content">
+				
+				<div class="col-sm-2 sidenav">
+					<!--<p><a href="#">Edit</a></p>
+					<p><a href="#">Delete?</a></p>-->
+				</div> 
+				<div class="col-sm-8 text-left" id="content"> 
+					<h1>Explore by >> Document Type</h1>					
+					<div class="col-md-6" onclick="">
+						<div class="panel panel-default" >
+							<div class="panel-heading text-center">Diary</div>
+							<div class="panel-body">
+								<img src="http://content.presspage.com/uploads/1369/6771_large.jpg?10000" alt="Explore Diaries" class="img-responsive img-rounded">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading text-center">Judgements</div>
+							<div class="panel-body">
+								<img src="http://www.harassed.in/wp-content/uploads/2016/01/Judgement.png" alt="Explore Judgements" class="img-responsive img-rounded">
+							</div>
+						</div>
+					</div>	
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading text-center">Newspaper Letters</div>
+							<div class="panel-body">
+								<img src="http://ilpostinocanada.com/wp-content/uploads/2011/09/letersToEditor1_bw-300x200.jpg" alt="Explore Newspaper Letters" class="img-responsive img-rounded">
+							</div>
+						</div>
+					</div>	
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading text-center">Private Letters</div>
+							<div class="panel-body">
+								<img src="http://www.redditchadvertiser.co.uk/resources/images/3970166.jpg?type=nile-list-header&htype=0" alt="Explore Private Letters" class="img-responsive img-rounded">
+							</div>
+						</div>
+					</div>	
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading text-center" onclick="">Publications</div>
+							<div class="panel-body">
+								<img src="http://englishagenda.britishcouncil.org/sites/ec/files/imagecache/300x200/image/iStock_000002193842XSmall.jpg" alt="Explore Publications" class="img-responsive img-rounded">
+							</div>
+						</div>
+					</div>		
+				</div>
+
+			</div> 
+
+		</div>
+
+	</div>
+	<div class="navbar navbar-default navbar-fixed-bottom">
+		<div class="container">
+			<p class="navbar-text pull-left">&copy; The Colenso Project 2016 </p>
+		</div>		
+	</div>
+
+</body>
+</html>
