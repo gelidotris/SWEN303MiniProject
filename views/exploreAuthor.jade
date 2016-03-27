@@ -1,0 +1,62 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title  Colenso Project - Mini Project 
+    // Latest compiled and minified CSS
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
+    // Optional theme
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css')
+    script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
+    // Latest compiled and minified JavaScript
+    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
+    link(rel='stylesheet', type='text/css', href='main.css')
+    script(language='Javascript', src='javascript.js')
+  body
+    .container-fluid
+      header
+        nav.navbar.navbar-default.navbar-fixed-top
+          .container
+            // Brand and toggle get grouped for better mobile display
+            .navbar-header
+              button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1', aria-expanded='false')
+                span.sr-only Toggle navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+              a.navbar-brand(onclick='homepage()') Colenso Project
+            // Collect the nav links, forms, and other content for toggling
+            #bs-example-navbar-collapse-1.collapse.navbar-collapse
+              ul.nav.navbar-nav
+                li
+                  a(onclick='homepage()')
+                    | Home 
+                    span.sr-only (current)
+                li
+                  a(onclick='addDoc()') Add Document
+                li.dropdown
+                  a.dropdown-toggle(onclick='', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                    | Explore by 
+                    span.caret
+                  ul.dropdown-menu
+                    li
+                      a(onclick='exploreDocType()') Document Type
+                    li
+                      a(onclick='exploreAuthor()') Author
+                    li
+                      a(onclick='exploreYear()') Year?
+              form.navbar-form.navbar-right(role='search')
+                .form-group
+                  input.form-control(type='text', placeholder='Search')
+                button.btn.btn-default(type='submit') Submit
+      .container.text-center
+        .row.content
+          .col-sm-2.sidenav
+            //
+              <p><a href="#">Edit</a></p>
+              <p><a href="#">Delete?</a></p>
+          #content.col-sm-8.text-left
+            h1 Explore by >> Author
+    .navbar.navbar-default.navbar-fixed-bottom
+      .container
+        p.navbar-text.pull-left © The Colenso Project 2016 
