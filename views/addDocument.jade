@@ -1,18 +1,19 @@
-doctype html
-html
-  head
-    meta(charset='utf-8')
-    title  Colenso Project - Mini Project 
-    // Latest compiled and minified CSS
-    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
-    // Optional theme
-    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css')
-    script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
-    // Latest compiled and minified JavaScript
-    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
-    link(rel='stylesheet', type='text/css', href='main.css')
-    script(language='Javascript', src='javascript.js')
-  body
+extends ../node_modules/jade-bootstrap/_bootstrap
+
+head
+  meta(charset='utf-8')
+  title  Colenso Project - Mini Project 
+
+  link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
+
+  link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css')
+  script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
+
+  script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
+
+  script(language='Javascript', src='index.js')
+
+block body
     .container-fluid
       header
         nav.navbar.navbar-default.navbar-fixed-top
@@ -24,30 +25,30 @@ html
                 span.icon-bar
                 span.icon-bar
                 span.icon-bar
-              a.navbar-brand(onclick='homepage()') Colenso Project
+              a.navbar-brand(href="/") Colenso Project
             // Collect the nav links, forms, and other content for toggling
             #bs-example-navbar-collapse-1.collapse.navbar-collapse
               ul.nav.navbar-nav
                 li
-                  a(onclick='homepage()')
+                  a(href = "/")
                     | Home 
                     span.sr-only (current)
                 li
-                  a(onclick='addDoc()') Add Document
+                  a(href= "/addDocument") Add Document
                 li.dropdown
                   a.dropdown-toggle(onclick='', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
                     | Explore by 
                     span.caret
                   ul.dropdown-menu
                     li
-                      a(onclick='exploreDocType()') Document Type
+                      a(href = "/exploreDocType") Document Type
                     li
-                      a(onclick='exploreAuthor()') Author
+                      a(href = "/exploreAuthor") Author
                     li
-                      a(onclick='exploreYear()') Year?
-              form.navbar-form.navbar-right(role='search')
+                      a(href = "/exploreYear") Year?
+              form.navbar-form.navbar-right(role='search', action = "/search", method = "get")
                 .form-group
-                  input.form-control(type='text', placeholder='Search')
+                  input.form-control(type='text', placeholder='Search', name = "searchString")
                 button.btn.btn-default(type='submit') Submit
       .container.text-center
         .row.content

@@ -9,9 +9,10 @@ head
   link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css')
   script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
 
+  link(rel='stylesheet', type='text/css', href='/main.css')
   script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
-  link(rel='stylesheet', type='text/css', href='main.css')
-  script(language='Javascript', src='javascript.js')
+
+  script(language='Javascript', src='index.js')
 
 block body
     .container-fluid
@@ -25,30 +26,30 @@ block body
                 span.icon-bar
                 span.icon-bar
                 span.icon-bar
-              a.navbar-brand(onclick='homepage()') Colenso Project
+              a.navbar-brand(href="/") Colenso Project
             // Collect the nav links, forms, and other content for toggling
             #bs-example-navbar-collapse-1.collapse.navbar-collapse
               ul.nav.navbar-nav
                 li
-                  a(onclick='homepage()')
+                  a(href = "/")
                     | Home 
                     span.sr-only (current)
                 li
-                  a(onclick='addDoc()') Add Document
+                  a(href= "/addDocument") Add Document
                 li.dropdown
                   a.dropdown-toggle(onclick='', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
                     | Explore by 
                     span.caret
                   ul.dropdown-menu
                     li
-                      a(onclick='exploreDocType()') Document Type
+                      a(href = "/exploreDocType") Document Type
                     li
-                      a(onclick='exploreAuthor()') Author
+                      a(href = "/exploreAuthor") Author
                     li
-                      a(onclick='exploreYear()') Year?
-              form.navbar-form.navbar-right(role='search')
+                      a(href = "/exploreYear") Year?
+              form.navbar-form.navbar-right(role='search', action = "/search", method = "get")
                 .form-group
-                  input.form-control(type='text', placeholder='Search')
+                  input.form-control(type='text', placeholder='Search', name = "searchString")
                 button.btn.btn-default(type='submit') Submit
       .container.text-center
         .row.content
@@ -61,7 +62,7 @@ block body
             p
               | This website provides a way to explore and read documents from the Colenso Project digitally. This is an open project/database where users are also able to add new documents and edit existing ones.
             br
-            h4(onclick='colensoProject()') The Colenso Project
+            h4<a href="http://www.williamcolenso.co.nz/">The Colenso Project</a>
             p
               | The Colenso Society, Victoria University of Wellington and MTG Hawke's Bay are delighted to announce the establishment of the Colenso Project. This exciting new initiative seeks to build on the blossoming national and international interest in William Colenso’s life and ideas as the result of the William Colenso Bicentenary Celebrations in Hawke’s Bay in 2011, and a body of new publications and research.
             p
@@ -69,3 +70,4 @@ block body
     .navbar.navbar-default.navbar-fixed-bottom
       .container
         p.navbar-text.pull-left © The Colenso Project 2016 
+
