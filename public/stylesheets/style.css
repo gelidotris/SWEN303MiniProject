@@ -1,66 +1,8 @@
-
-.navbar-default {
-  background-color: #ffffff;
-  border-color: #cbd2bd;
-}
-.navbar-default .navbar-brand {
-  color: #a8b66d;
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-
-.sidenav {
-	padding-top: 40px;
-	height: 100%;
+a {
+  color: #00B7FF;
 }
-
-h1 {
-	padding-top: 10px;
-	 color: #a8b66d;	
-	 padding-bottom: 10px;
-}
-
-a, h4{
-  color: #a8b66d;	
-}
-
-.panel:hover{
-	cursor : pointer; 
-	cursor : hand;
-}
-
-a:hover, h4:hover {
-	color:#cbd2bd;
-	cursor : pointer; 
-	cursor : hand;
-}
-
-body{
-	padding: 500px;
-	position: relative;
-	height: 100%
-}
-
-.content{
-	padding: 50px;
-	margin-bottom: auto;
-	position: center;
-}
-/* Set black background color, white text and some padding */
-.panel-footer {
-	background-color: #a8b66d;
-	color: white;
-	padding: 5px;
-	position: absolute;
-	bottom: 0;
-}
-
-.addDoc{
-	padding: 50px;
-	margin-bottom: auto;
-	position: center;
-}
-
-
-
-
-

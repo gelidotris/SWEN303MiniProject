@@ -26,28 +26,5 @@ router.get('/exploreDocType', function(req, res) {
 router.get('/search', function(req, res) {
 	res.render('search', { title: 'Colenso Project >> Search', content: req.query.searchString });
 });
-function homepage(){
-	window.location= "index.html"
-}
-
-function addDoc(){
-		window.location.href = "/addDocument"
-}
-
-function exploreDocType(){
-		window.location = "exploreDocType.html"
-}
-
-function exploreAuthor(){
-		window.location = "exploreAuthor.html"
-}
-
-function exploreYear(){
-		window.location = "exploreYear.html"
-}
-
-function colensoProject(){
-		window.location.href = "http://www.williamcolenso.co.nz/"
-}
 
 module.exports = router;

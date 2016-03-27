@@ -1,5 +1,5 @@
-extends ../node_modules/jade-bootstrap/_bootstrap
-
+doctype html
+html
 head
   meta(charset='utf-8')
   title  Colenso Project - Mini Project 
@@ -11,6 +11,7 @@ head
 
   script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
 
+  link(rel='stylesheet', type='text/css', href='main.css')
   script(language='Javascript', src='index.js')
 
 block body
@@ -57,7 +58,7 @@ block body
               <p><a href="#">Edit</a></p>
               <p><a href="#">Delete?</a></p>
           #content.col-sm-8.text-left
-            h1 Welcome
+            h1 Search Results
             p You typed in #{content}.
     .navbar.navbar-default.navbar-fixed-bottom
       .container
