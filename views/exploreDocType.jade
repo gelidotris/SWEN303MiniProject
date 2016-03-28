@@ -59,12 +59,14 @@ block body
               <p><a href="#">Delete?</a></p>
           #content.col-sm-8.text-left
             h1 Explore by >> Document Type
-            .col-md-6(onclick='')
-              .panel.panel-default
-                .panel-heading.text-center Diary
             .col-md-6
               .panel.panel-default
-                .panel-heading.text-center Judgements
+                .panel-heading.text-center 
+                  a(href = "/docType") Diary
+            .col-md-6
+              .panel.panel-default
+                .panel-heading.text-center 
+                  a(href = "/displayDocument") Judgements
             .col-md-6
               .panel.panel-default
                 .panel-heading.text-center Newspaper Letters

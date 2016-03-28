@@ -58,8 +58,9 @@ block body
               <p><a href="#">Edit</a></p>
               <p><a href="#">Delete?</a></p>
           #content.col-sm-8.text-left
-            h1 Search Results
-            p You typed in #{content}.
+            h1 #{title}
+            h5 Showing files which include '#{search_Text}'
+            p| !{search_results}
     .navbar.navbar-default.navbar-fixed-bottom
       .container
         p.navbar-text.pull-left © The Colenso Project 2016 

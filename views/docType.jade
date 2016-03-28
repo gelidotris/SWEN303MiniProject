@@ -46,7 +46,7 @@ block body
                     li
                       a(href = "/exploreAuthor") Author
                     li
-                      a(href = "/browse") Year?
+                      a(href = "/exploreYear") Year?
               form.navbar-form.navbar-right(role='search', action = "/search", method = "get")
                 .form-group
                   input.form-control(type='text', placeholder='Search', name = "searchString")
@@ -58,15 +58,8 @@ block body
               <p><a href="#">Edit</a></p>
               <p><a href="#">Delete?</a></p>
           #content.col-sm-8.text-left
-            h1 Welcome
-            p
-              | This website provides a way to explore and read documents from the Colenso Project digitally. This is an open project/database where users are also able to add new documents and edit existing ones.
-            br
-            h4<a href="http://www.williamcolenso.co.nz/">The Colenso Project</a>
-            p
-              | The Colenso Society, Victoria University of Wellington and MTG Hawke's Bay are delighted to announce the establishment of the Colenso Project. This exciting new initiative seeks to build on the blossoming national and international interest in William Colenso’s life and ideas as the result of the William Colenso Bicentenary Celebrations in Hawke’s Bay in 2011, and a body of new publications and research.
-            p
-              | The intent of the Project is to ignite public and academic interest in Colenso’s words – published, unpublished, private letters, journals - both in Maori and English, by sharing them with the world in digital form. We envisage a hub for all things Colenso: a place to read documents in the original, explore his writing through transcriptions, and as a place to experiment with new research and interpretation methods.
+            h1 #{title}
+            li !{document_type}
     .navbar.navbar-default.navbar-fixed-bottom
       .container
         p.navbar-text.pull-left © The Colenso Project 2016 
