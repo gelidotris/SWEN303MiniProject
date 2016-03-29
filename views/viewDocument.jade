@@ -45,8 +45,6 @@ block body
                       a(href = "/exploreDocType") Document Type
                     li
                       a(href = "/exploreAuthor") Author
-                    li
-                      a(href = "/exploreYear") Year?
               form.navbar-form.navbar-right(role='search', action = "/search", method = "get")
                 .form-group
                   input.form-control(type='text', placeholder='Search', name = "searchString")
@@ -54,12 +52,14 @@ block body
       .container.text-center
         .row.content
           .col-sm-2.sidenav
-            //
-              <p><a href="#">Edit</a></p>
-              <p><a href="#">Delete?</a></p>
+            .panel.panel-default
+                .panel-heading.text-center 
+                  a(href = "#") Save & Share URL
           #content.col-sm-8.text-left
             h3 #{title}
             p !{display_doc}
+
+            a-btn('#') Download and Share current document
     .navbar.navbar-default.navbar-fixed-bottom
       .container
         p.navbar-text.pull-left © The Colenso Project 2016 

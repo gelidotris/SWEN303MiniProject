@@ -5,9 +5,6 @@ client.execute("OPEN Colenso");
 var express = require('express');
 var router = express.Router();
 
-var xmlFilePath = this.href;
-
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	res.render('index', { title: 'Colenso Project' });
@@ -54,7 +51,6 @@ router.get('/viewDocument', function(req, res) {
 				else {
 					res.render('viewDocument', { title: 'Colenso Project', display_doc: result.result});
 				}
-
 			}
 			);
 	}
@@ -63,28 +59,70 @@ router.get('/viewDocument', function(req, res) {
 	}
 });
 
-router.get('/docType', function(req, res) {
+router.get('/viewDiaries', function(req, res) {
 	var query = "XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0';" +
-	"collection('Colenso')//title[contains(.,'Diary')]/text()";
-	client.execute(query,
+	"for $x in (collection('Colenso')) let $p := db:path($x) where count($p[contains(.,'diary')]) > 0 return(<li><a href='/viewDocument?doc={$p}'>{$x//title/text()}</a></li>)";
+		client.execute(query,
 		function (error, result) {
 			if(error){ console.error(error);}
 			else {
-				res.render('docType', { title: 'Colenso Project >> Diaries', document_type: result.result});
+				res.render('viewDiaries', { title: 'Colenso Project >> Diaries', document_type: result.result});
 				console.log("RESULT");
 			}
 		}
 		);
 });
 
-router.get('/browse', function(req, res) {
+router.get('/viewJudgements', function(req, res) {
 	var query = "XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0';" +
-	"for $x in (collection('Colenso/Hooker')) where $x[contains(.,'1863')] return db:path($x)";
-	client.execute(query,
+	"for $x in (collection('Colenso')) let $p := db:path($x) where count($p[contains(.,'judgements')]) > 0 return(<li><a href='/viewDocument?doc={$p}'>{$x//title/text()}</a></li>)";
+		client.execute(query,
 		function (error, result) {
 			if(error){ console.error(error);}
 			else {
-				res.render('browse', { title: 'The Colenso Project', list_letters: result.result });
+				res.render('viewJudgements', { title: 'Colenso Project >> Judgements', document_type: result.result});
+				console.log("RESULT");
+			}
+		}
+		);
+});
+
+router.get('/viewNewspaperL', function(req, res) {
+	var query = "XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0';" +
+	"for $x in (collection('Colenso')) let $p := db:path($x) where count($p[contains(.,'newspaper_letters')]) > 0 return(<li><a href='/viewDocument?doc={$p}'>{$x//title/text()}</a></li>)";
+		client.execute(query,
+		function (error, result) {
+			if(error){ console.error(error);}
+			else {
+				res.render('viewNewspaperL', { title: 'Colenso Project >> Newspaper Letters', document_type: result.result});
+				console.log("RESULT");
+			}
+		}
+		);
+});
+
+router.get('/viewPrivateL', function(req, res) {
+	var query = "XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0';" +
+	"for $x in (collection('Colenso')) let $p := db:path($x) where count($p[contains(.,'private_letters')]) > 0 return(<li><a href='/viewDocument?doc={$p}'>{$x//title/text()}</a></li>)";
+		client.execute(query,
+		function (error, result) {
+			if(error){ console.error(error);}
+			else {
+				res.render('viewPrivateL', { title: 'Colenso Project >> Private Letters', document_type: result.result});
+				console.log("RESULT");
+			}
+		}
+		);
+});
+
+router.get('/viewPublications', function(req, res) {
+	var query = "XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0';" +
+	"for $x in (collection('Colenso')) let $p := db:path($x) where count($p[contains(.,'publications')]) > 0 return(<li><a href='/viewDocument?doc={$p}'>{$x//title/text()}</a></li>)";
+		client.execute(query,
+		function (error, result) {
+			if(error){ console.error(error);}
+			else {
+				res.render('viewPublications', { title: 'Colenso Project >> Publications', document_type: result.result});
 				console.log("RESULT");
 			}
 		}

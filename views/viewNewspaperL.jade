@@ -45,8 +45,6 @@ block body
                       a(href = "/exploreDocType") Document Type
                     li
                       a(href = "/exploreAuthor") Author
-                    li
-                      a(href = "/exploreYear") Year?
               form.navbar-form.navbar-right(role='search', action = "/search", method = "get")
                 .form-group
                   input.form-control(type='text', placeholder='Search', name = "searchString")
@@ -59,7 +57,10 @@ block body
               <p><a href="#">Delete?</a></p>
           #content.col-sm-8.text-left
             h1 #{title}
-            li !{document_type}
+            if (!locals.document_type)
+              p There are no Newspaper Letters available.
+            else 
+              p !{document_type}
     .navbar.navbar-default.navbar-fixed-bottom
       .container
         p.navbar-text.pull-left © The Colenso Project 2016 

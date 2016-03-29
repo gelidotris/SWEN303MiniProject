@@ -56,27 +56,12 @@ block body
               <p><a href="#">Edit</a></p>
               <p><a href="#">Delete?</a></p>
           #content.col-sm-8.text-left
-            h1 Explore by >> Document Type
-            .col-md-6
-              .panel.panel-default
-                .panel-heading.text-center 
-                  a(href = "/viewDiaries") Diary
-            .col-md-6
-              .panel.panel-default
-                .panel-heading.text-center 
-                  a(href = "/viewJudgements") Judgements
-            .col-md-6
-              .panel.panel-default
-                .panel-heading.text-center 
-                  a(href = "/viewNewspaperL") Newspaper Letters
-            .col-md-6
-              .panel.panel-default
-                .panel-heading.text-center 
-                  a(href = "/viewPrivateL") Private Letters
-            .col-md-6
-              .panel.panel-default
-                .panel-heading.text-center
-                  a(href = "/viewPublications") Publications                
+            h1 #{title}
+            if (!locals.document_type)
+              p There are no Publications available.
+            else 
+              p !{document_type}
     .navbar.navbar-default.navbar-fixed-bottom
       .container
         p.navbar-text.pull-left © The Colenso Project 2016 
+
