@@ -13,12 +13,10 @@ head
 
   link(rel='stylesheet', type='text/css', href='main.css')
   script(language='Javascript', src='index.js')
-  script.
-    function download(name, type) {
-    var a = document.getElementById("a");
-    var file = new Blob([{display_doc}], {type: type});
-    a.href = URL.createObjectURL(file);
-    a.download = name;
+  script(language='javascript', type='text/javascript').
+    var file_name = document.URL;
+    openDownload = function() {
+    location.href = file_name.replace('viewDocument','download');
     }
 
 block body
@@ -63,9 +61,7 @@ block body
           .col-sm-2.sidenav
             .panel.panel-default
                 .panel-heading.text-center 
-                  button(onclick="download('myfilename.txt', 'text/plain')") Create file
-                .panel-heading.text-center                   
-                  a#a(href='') Download file
+                  a(href='javascript:openDownload()') Download
           #content.col-sm-8.text-left
             h3 #{title}
             p !{display_doc}

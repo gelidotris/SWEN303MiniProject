@@ -99,21 +99,22 @@ router.get('/viewDocument', function(req, res) {
 	}
 });
 
-router.get('/download', function(req, res) {
+router.get('/download', function(req, res, next) {
 	if(req.query.doc){
-		client.execute("XQUERY let $text := text { 'hello' } return xdmp:save('hello.txt', $text)", 
-			function(error, result){
-				if(error){ 
-					console.error(error);}
-				else {
-					res.render('download', { title: 'Colenso Project', display_doc: result.result});
-				}
+		var file = req.query.doc;
+		client.execute("XQUERY doc('Colenso/" + file + "')", 
+		function(error, result){
+			if(error){
+				console.error(error);
+			}else{				
+				res.writeHead(200, {'Content-Disposition': 'attachment; fileName=' + file});
+				res.write(result.result);
+				res.end('');
 			}
-			);
-	}
-	else {
-		 res.render('download', { title: 'Download', display_doc: req.query.doc });
-	}
+		});	
+	} else{
+		console.log('.....');
+	}	
 });
 
 router.get('/viewDiaries', function(req, res) {
