@@ -36,17 +36,8 @@ block body
                     span.sr-only (current)
                 li
                   a(href= "/addDocument") Add Document
-                li.dropdown
-                  a.dropdown-toggle(onclick='', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-                    | Explore by 
-                    span.caret
-                  ul.dropdown-menu
-                    li
-                      a(href = "/exploreDocType") Document Type
-                    li
-                      a(href = "/exploreAuthor") Author
-                    li
-                      a(href = "/exploreYear") Year?
+                li
+                  a(href= "/exploreDocType") Browse by Document Type
               form.navbar-form.navbar-right(role='search', action = "/search", method = "get")
                 .form-group
                   input.form-control(type='text', placeholder='Search by String', name = "searchString")
@@ -56,9 +47,6 @@ block body
       .container.text-center
         .row.content
           .col-sm-2.sidenav
-            //
-              <p><a href="#">Edit</a></p>
-              <p><a href="#">Delete?</a></p>
           #content.col-sm-8.text-left
             h1 #{title}
             if (!locals.document_type)
@@ -67,5 +55,5 @@ block body
               p !{document_type}
     .navbar.navbar-default.navbar-fixed-bottom
       .container
-        p.navbar-text.pull-left © The Colenso Project 2016 
+        p.navbar-text.pull-left © The Colenso Project
 

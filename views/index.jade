@@ -37,15 +37,8 @@ block body
                     span.sr-only (current)
                 li
                   a(href= "/addDocument") Add Document
-                li.dropdown
-                  a.dropdown-toggle(onclick='', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-                    | Explore by 
-                    span.caret
-                  ul.dropdown-menu
-                    li
-                      a(href = "/exploreDocType") Document Type
-                    li
-                      a(href = "/exploreAuthor") Author
+                li
+                  a(href= "/exploreDocType") Browse by Document Type
               form.navbar-form.navbar-right(role='search', action = "/search", method = "get")
                 .form-group
                   input.form-control(type='text', placeholder='Search by String', name = "searchString")
@@ -70,5 +63,5 @@ block body
               | The intent of the Project is to ignite public and academic interest in Colenso’s words – published, unpublished, private letters, journals - both in Maori and English, by sharing them with the world in digital form. We envisage a hub for all things Colenso: a place to read documents in the original, explore his writing through transcriptions, and as a place to experiment with new research and interpretation methods.
     .navbar.navbar-default.navbar-fixed-bottom
       .container
-        p.navbar-text.pull-left © The Colenso Project 2016 
+        p.navbar-text.pull-left © The Colenso Project 
 

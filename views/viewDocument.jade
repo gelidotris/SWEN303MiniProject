@@ -41,15 +41,8 @@ block body
                     span.sr-only (current)
                 li
                   a(href= "/addDocument") Add Document
-                li.dropdown
-                  a.dropdown-toggle(onclick='', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-                    | Explore by 
-                    span.caret
-                  ul.dropdown-menu
-                    li
-                      a(href = "/exploreDocType") Document Type
-                    li
-                      a(href = "/exploreAuthor") Author
+                li
+                  a(href= "/exploreDocType") Browse by Document Type
               form.navbar-form.navbar-right(role='search', action = "/search", method = "get")
                 .form-group
                   input.form-control(type='text', placeholder='Search by String', name = "searchString")
@@ -69,5 +62,5 @@ block body
 
     .navbar.navbar-default.navbar-fixed-bottom
       .container
-        p.navbar-text.pull-left © The Colenso Project 2016 
+        p.navbar-text.pull-left © The Colenso Project 
 

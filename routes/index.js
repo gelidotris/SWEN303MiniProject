@@ -11,12 +11,13 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/addDocument', function(req, res) {
-	res.render('addDocument', { title: 'Add Document' });
-
-});
-
-router.get('/exploreAuthor', function(req, res) {
-	res.render('exploreAuthor', { title: 'Colenso Project >> Explore Author' });
+	if (req.query.addDoc){
+		client.execute("XQUERY ADD " + req.query.addDoc)
+		res.render('addDocument', { title: 'Add Document>>' });
+	}
+	else {		
+		res.render('addDocument', { title: 'Add Document', docAdd: req.query.addDoc});
+		console.log("RESULT");}
 });
 
 router.get('/exploreDocType', function(req, res) {
@@ -28,17 +29,15 @@ router.get('/search', function(req, res) {
 	"for $x in (collection('Colenso')) where $x[contains(.,'"+req.query.searchString+"')] let $p := db:path($x) return(<li><a href='/viewDocument?doc={$p}'>{$x//title/text()}</a></li>)";
 	
 	var stringLogic = "'" + req.query.searchLogic + "'";
-    stringLogic = stringLogic.replace(" AND ", '\' ftand \'')
-    					.replace(" OR ", '\' ftor \'')
-    					.replace(" NOT ", '\' ftnot \'');
-    var queryLogic = "XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0';" +
-    " for $t in //TEI[. contains text "+ stringLogic + " using wildcards]" +
-    " let $p := db:path($t)" +
-    " group by $p" +
-    " return <li><a href='/viewDocument?doc={$p}'>{$p}</a></li>";
+	stringLogic = stringLogic.replace(" AND ", '\' ftand \'')
+	.replace(" OR ", '\' ftor \'')
+	.replace(" NOT ", '\' ftnot \'');
 
-    var queryMarkup = "XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0';  " + 
-    "for $t in "+ req.query.searchMarkup + " let $p := db:path($t) return (<li><a href='/viewDocument?doc={$p}'>{$p}</a></li>)";
+	var queryLogic = "XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0';" +
+	" for $t in //TEI[. contains text "+ stringLogic +" using wildcards] let $p := db:path($t) group by $p return <li><a href='/viewDocument?doc={$p}'>{$p}</a></li>";
+
+	var queryMarkup = "XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0';  " + 
+	"for $t in "+ req.query.searchMarkup + " let $p := db:path($t) return (<li><a href='/viewDocument?doc={$p}'>{$p}</a></li>)";
 
 	if (req.query.searchString){
 		client.execute(queryString,
@@ -88,14 +87,14 @@ router.get('/viewDocument', function(req, res) {
 			function(error, result){
 				if(error){ 
 					console.error(error);}
-				else {
-					res.render('viewDocument', { title: 'Colenso Project', display_doc: result.result, fPath: req.query.doc});
+					else {
+						res.render('viewDocument', { title: 'Colenso Project', display_doc: result.result, fPath: req.query.doc});
+					}
 				}
-			}
-			);
+				);
 	}
 	else {
-		 res.render('viewDocument', { display_doc: req.query.doc });
+		res.render('viewDocument', { display_doc: req.query.doc });
 	}
 });
 
@@ -103,15 +102,15 @@ router.get('/download', function(req, res, next) {
 	if(req.query.doc){
 		var file = req.query.doc;
 		client.execute("XQUERY doc('Colenso/" + file + "')", 
-		function(error, result){
-			if(error){
-				console.error(error);
-			}else{				
-				res.writeHead(200, {'Content-Disposition': 'attachment; fileName=' + file});
-				res.write(result.result);
-				res.end('');
-			}
-		});	
+			function(error, result){
+				if(error){
+					console.error(error);
+				}else{				
+					res.writeHead(200, {'Content-Disposition': 'attachment; fileName=' + file});
+					res.write(result.result);
+					res.end('');
+				}
+			});	
 	} else{
 		console.log('.....');
 	}	
@@ -120,7 +119,7 @@ router.get('/download', function(req, res, next) {
 router.get('/viewDiaries', function(req, res) {
 	var query = "XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0';" +
 	"for $x in (collection('Colenso')) let $p := db:path($x) where count($p[contains(.,'diary')]) > 0 return(<li><a href='/viewDocument?doc={$p}'>{$x//title/text()}</a></li>)";
-		client.execute(query,
+	client.execute(query,
 		function (error, result) {
 			if(error){ console.error(error);}
 			else {
@@ -134,7 +133,7 @@ router.get('/viewDiaries', function(req, res) {
 router.get('/viewJudgements', function(req, res) {
 	var query = "XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0';" +
 	"for $x in (collection('Colenso')) let $p := db:path($x) where count($p[contains(.,'judgements')]) > 0 return(<li><a href='/viewDocument?doc={$p}'>{$x//title/text()}</a></li>)";
-		client.execute(query,
+	client.execute(query,
 		function (error, result) {
 			if(error){ console.error(error);}
 			else {
@@ -148,7 +147,7 @@ router.get('/viewJudgements', function(req, res) {
 router.get('/viewNewspaperL', function(req, res) {
 	var query = "XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0';" +
 	"for $x in (collection('Colenso')) let $p := db:path($x) where count($p[contains(.,'newspaper_letters')]) > 0 return(<li><a href='/viewDocument?doc={$p}'>{$x//title/text()}</a></li>)";
-		client.execute(query,
+	client.execute(query,
 		function (error, result) {
 			if(error){ console.error(error);}
 			else {
@@ -162,7 +161,7 @@ router.get('/viewNewspaperL', function(req, res) {
 router.get('/viewPrivateL', function(req, res) {
 	var query = "XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0';" +
 	"for $x in (collection('Colenso')) let $p := db:path($x) where count($p[contains(.,'private_letters')]) > 0 return(<li><a href='/viewDocument?doc={$p}'>{$x//title/text()}</a></li>)";
-		client.execute(query,
+	client.execute(query,
 		function (error, result) {
 			if(error){ console.error(error);}
 			else {
@@ -176,7 +175,7 @@ router.get('/viewPrivateL', function(req, res) {
 router.get('/viewPublications', function(req, res) {
 	var query = "XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0';" +
 	"for $x in (collection('Colenso')) let $p := db:path($x) where count($p[contains(.,'publications')]) > 0 return(<li><a href='/viewDocument?doc={$p}'>{$x//title/text()}</a></li>)";
-		client.execute(query,
+	client.execute(query,
 		function (error, result) {
 			if(error){ console.error(error);}
 			else {

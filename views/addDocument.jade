@@ -13,7 +13,7 @@ head
 
   link(rel='stylesheet', type='text/css', href='main.css')
   script(language='Javascript', src='index.js')
-
+    
 block body
     .container-fluid
       header
@@ -36,18 +36,13 @@ block body
                     span.sr-only (current)
                 li
                   a(href= "/addDocument") Add Document
-                li.dropdown
-                  a.dropdown-toggle(onclick='', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-                    | Explore by 
-                    span.caret
-                  ul.dropdown-menu
-                    li
-                      a(href = "/exploreDocType") Document Type
-                    li
-                      a(href = "/exploreAuthor") Author
+                li
+                  a(href= "/exploreDocType") Browse by Document Type
               form.navbar-form.navbar-right(role='search', action = "/search", method = "get")
                 .form-group
-                  input.form-control(type='text', placeholder='Search', name = "searchString")
+                  input.form-control(type='text', placeholder='Search by String', name = "searchString")
+                  input.form-control(type='text', placeholder='Search by Logical Operators', name = "searchLogic")
+                  input.form-control(type='text', placeholder='Search by Markup', name = "searchMarkup")
                 button.btn.btn-default(type='submit') Submit
       .container.text-center
         .row.content
@@ -57,7 +52,7 @@ block body
               <p><a href="#">Delete?</a></p>
           #content.col-sm-8.text-left
             h1 #{title}
-            form(action='', method='')
+            form(action='/addDocument', method='')
               #addDoc.form-group
                 label(for='file-upload') File Upload
                 input#file-upload(type='file')
@@ -65,4 +60,4 @@ block body
                 input#submit.btn.btn-default(type='submit', value='Submit')
     .navbar.navbar-default.navbar-fixed-bottom
       .container
-        p.navbar-text.pull-left © The Colenso Project 2016 
+        p.navbar-text.pull-left © The Colenso Project 
