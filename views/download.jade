@@ -45,26 +45,16 @@ block body
                       a(href = "/exploreDocType") Document Type
                     li
                       a(href = "/exploreAuthor") Author
-                    li
-                      a(href = "/exploreYear") Year?
               form.navbar-form.navbar-right(role='search', action = "/search", method = "get")
                 .form-group
-                  input.form-control(type='text', placeholder='Search by String', name = "searchString")
-                  input.form-control(type='text', placeholder='Search by Logical Operators', name = "searchLogic")
-                  input.form-control(type='text', placeholder='Search by Markup', name = "searchMarkup")
+                  input.form-control(type='text', placeholder='Search', name = "searchString")
                 button.btn.btn-default(type='submit') Submit
       .container.text-center
         .row.content
           .col-sm-2.sidenav
-            //
-              <p><a href="#">Edit</a></p>
-              <p><a href="#">Delete?</a></p>
           #content.col-sm-8.text-left
             h1 #{title}
-            if (!locals.document_type)
-              p There are no Diaries available.
-            else 
-              p !{document_type}
+            p #{display_doc}
     .navbar.navbar-default.navbar-fixed-bottom
       .container
         p.navbar-text.pull-left © The Colenso Project 2016 

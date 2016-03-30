@@ -47,7 +47,9 @@ block body
                       a(href = "/exploreAuthor") Author
               form.navbar-form.navbar-right(role='search', action = "/search", method = "get")
                 .form-group
-                  input.form-control(type='text', placeholder='Search', name = "searchString")
+                  input.form-control(type='text', placeholder='Search by String', name = "searchString")
+                  input.form-control(type='text', placeholder='Search by Logical Operators', name = "searchLogic")
+                  input.form-control(type='text', placeholder='Search by Markup', name = "searchMarkup")
                 button.btn.btn-default(type='submit') Submit
       .container.text-center
         .row.content

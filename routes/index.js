@@ -24,10 +24,24 @@ router.get('/exploreDocType', function(req, res) {
 });
 
 router.get('/search', function(req, res) {
-	var query = "XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0';" +
+	var queryString = "XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0';" +
 	"for $x in (collection('Colenso')) where $x[contains(.,'"+req.query.searchString+"')] let $p := db:path($x) return(<li><a href='/viewDocument?doc={$p}'>{$x//title/text()}</a></li>)";
+	
+	var stringLogic = "'" + req.query.searchLogic + "'";
+    stringLogic = stringLogic.replace(" AND ", '\' ftand \'')
+    					.replace(" OR ", '\' ftor \'')
+    					.replace(" NOT ", '\' ftnot \'');
+    var queryLogic = "XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0';" +
+    " for $t in //TEI[. contains text "+ stringLogic + " using wildcards]" +
+    " let $p := db:path($t)" +
+    " group by $p" +
+    " return <li><a href='/viewDocument?doc={$p}'>{$p}</a></li>";
+
+    var queryMarkup = "XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0';  " + 
+    "for $t in "+ req.query.searchMarkup + " let $p := db:path($t) return (<li><a href='/viewDocument?doc={$p}'>{$p}</a></li>)";
+
 	if (req.query.searchString){
-		client.execute(query,
+		client.execute(queryString,
 			function (error, result) {
 				if(error){ console.error(error);}
 				else {
@@ -37,8 +51,34 @@ router.get('/search', function(req, res) {
 			}
 			);
 	}
+	else if (req.query.searchLogic){
+		client.execute(queryLogic,
+			function (error, result) {
+				if(error){ console.error(error);}
+				else {
+					res.render('search', { title: 'Search Results', search_results: result.result, search_Text: req.query.searchLogic});
+					console.log("RESULT");
+				}
+			}
+			);
+	}
+	else if (req.query.searchMarkup){
+		client.execute(queryMarkup,
+			function (error, result) {
+				if(error){ console.error(error);}
+				else {
+					res.render('search', { title: 'Search Results', search_results: result.result, search_Text: req.query.searchMarkup});
+					console.log("RESULT");
+				}
+			}
+			);
+	}
+
 	else {res.render('search', { title: 'Search Results', search_results: "", search_Text: ""});
 	console.log("RESULT");
+
+
+
 }
 });
 
@@ -49,13 +89,30 @@ router.get('/viewDocument', function(req, res) {
 				if(error){ 
 					console.error(error);}
 				else {
-					res.render('viewDocument', { title: 'Colenso Project', display_doc: result.result});
+					res.render('viewDocument', { title: 'Colenso Project', display_doc: result.result, fPath: req.query.doc});
 				}
 			}
 			);
 	}
 	else {
 		 res.render('viewDocument', { display_doc: req.query.doc });
+	}
+});
+
+router.get('/download', function(req, res) {
+	if(req.query.doc){
+		client.execute("XQUERY let $text := text { 'hello' } return xdmp:save('hello.txt', $text)", 
+			function(error, result){
+				if(error){ 
+					console.error(error);}
+				else {
+					res.render('download', { title: 'Colenso Project', display_doc: result.result});
+				}
+			}
+			);
+	}
+	else {
+		 res.render('download', { title: 'Download', display_doc: req.query.doc });
 	}
 });
 
@@ -128,5 +185,6 @@ router.get('/viewPublications', function(req, res) {
 		}
 		);
 });
+
 
 module.exports = router;

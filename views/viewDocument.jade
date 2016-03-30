@@ -13,6 +13,13 @@ head
 
   link(rel='stylesheet', type='text/css', href='main.css')
   script(language='Javascript', src='index.js')
+  script.
+    function download(name, type) {
+    var a = document.getElementById("a");
+    var file = new Blob([{display_doc}], {type: type});
+    a.href = URL.createObjectURL(file);
+    a.download = name;
+    }
 
 block body
     .container-fluid
@@ -47,19 +54,23 @@ block body
                       a(href = "/exploreAuthor") Author
               form.navbar-form.navbar-right(role='search', action = "/search", method = "get")
                 .form-group
-                  input.form-control(type='text', placeholder='Search', name = "searchString")
+                  input.form-control(type='text', placeholder='Search by String', name = "searchString")
+                  input.form-control(type='text', placeholder='Search by Logical Operators', name = "searchLogic")
+                  input.form-control(type='text', placeholder='Search by Markup', name = "searchMarkup")
                 button.btn.btn-default(type='submit') Submit
       .container.text-center
         .row.content
           .col-sm-2.sidenav
             .panel.panel-default
                 .panel-heading.text-center 
-                  a(href = "#") Save & Share URL
+                  button(onclick="download('myfilename.txt', 'text/plain')") Create file
+                .panel-heading.text-center                   
+                  a#a(href='') Download file
           #content.col-sm-8.text-left
             h3 #{title}
             p !{display_doc}
 
-            a-btn('#') Download and Share current document
+
     .navbar.navbar-default.navbar-fixed-bottom
       .container
         p.navbar-text.pull-left © The Colenso Project 2016 
